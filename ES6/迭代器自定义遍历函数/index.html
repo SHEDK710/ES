@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>自定义遍历数据</title>
+</head>
+
+<body>
+    <script>
+        //声明一个对象
+        const banji = {
+                name: "终极一班",
+                stus: [
+                    "xiaoming",
+                    "xiaoning",
+                    "xiaotian",
+                    "knight"
+                ],
+                [Symbol.iterator]() {
+                    let index = 0;
+                    return {
+                        next: () => {
+                            if (index < this.stus.length) {
+                                const result = {
+                                    value: this.stus[index],
+                                    done: false
+                                };
+                                //下标自增
+                                index++;
+                                //返回结果
+                                return result;
+                            } else {
+                                return {
+                                    value: undefined,
+                                    done: true
+                                }
+                            }
+                        }
+                    };
+                }
+            }
+            //遍历这个对象
+        for (let v of banji) {
+            console.log(v);
+        }
+    </script>
+</body>
+
+</html>

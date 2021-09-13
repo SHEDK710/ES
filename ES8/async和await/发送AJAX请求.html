@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发送 AJAX 请求</title>
+</head>
+
+<body>
+    <script>
+        //发送 AJAX 请求，返回的结果时 Promise 对象
+        function sendAJAX(url) {
+            return new Promise((resolve, reject) => {
+                //1.创建对象
+                const xhr = new XMLHttpRequest();
+
+                //2.初始化
+                xhr.open('GET', url);
+
+                //3.发送
+                xhr.send();
+
+                //4.事件绑定
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            //成功
+                            resolve(xhr.response);
+                        } else {
+                            //如果失败
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            })
+        }
+
+        //promise then 测试
+        // sendAJAX("http://api.apiopen.top/getJoke").then(value => {
+        //     console.log(value);
+        // }, reason => {
+        //     console.warn(reason);
+        // });
+
+        //async 与 await 测试
+        async function main() {
+            //发送 AJAX 请求
+            let result = await sendAJAX("https://www.apishop.net/#/api/detail/?productID=215");
+            //再次测试
+            let tianqi = await sendAJAX("https://www.apishop.net/#/api/detail/?productID=76");
+
+            console.log(tianqi);
+        }
+
+        main();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>get 和 set</title>
+</head>
+
+<body>
+    <script>
+        //get 和 set
+        class Phone {
+            get price() {
+                console.long("价格属性被读取了");
+                return 'iloveyou'
+            }
+
+            set price(newVal) {
+                console.log("价格属性被修改了");
+            }
+        }
+        let s = new Phone();
+        //console.log(s.price);
+        s.price = 'free';
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>async</title>
+</head>
+
+<body>
+    <script>
+        //async函数
+        async function fn() {
+            //返回一个字符串
+            //return '赵伟豪';
+            //返回的结果不是一个 Promise 类型的对象,返回的结果是一个成功的 Promise
+            // return;
+            //抛出错误，返回的结果是一个失败的 Promise
+            // throw new Error('出错啦！');
+            //返回的结果是一个 Promise 对象
+            return new Promise((resolve, reject) => {
+                resolve('成功的数据');
+                // reject('失败的错误');
+            })
+        }
+
+        const result = fn();
+
+        //调用 then 方法
+        result.then(value => {
+            console.log(value);
+        }, reason => {
+            console.warn(reason);
+        })
+    </script>
+</body>
+
+</html>
